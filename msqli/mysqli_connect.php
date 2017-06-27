@@ -6,4 +6,5 @@ if(mysqli_connect_errno()){
 }else{
     echo 'connecting to database is OK!';
 }
+mysqli_select_db($link , "wpdbfa");
 $close = mysqli_close($link);

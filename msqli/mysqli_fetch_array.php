@@ -6,6 +6,7 @@ if(mysqli_connect_errno()){
 }else{
     echo 'connecting to database is OK! <br>';
 }
+mysqli_select_db($link , "wpdbfa");
 $query = "SELECT ID , post_title FROM wp_posts LIMIT 5";
 $query_result = mysqli_query($link , $query);
 

@@ -6,7 +6,7 @@ if(mysqli_connect_errno()){
 }else{
     echo 'connecting to database is OK! <br>';
 }
-
+mysqli_select_db($link , "wpdbfa");
 $query = "CREATE TABLE IF NOT EXISTS wp_test(
     cl1 INT(10) NOT NULL AUTO_INCREMENT,
     cl2 VARCHAR(15) ,
