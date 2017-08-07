@@ -38,3 +38,7 @@ echo preg_match("/h[a-z][a-f]t/", "hect") . "<br>"; //1
 echo preg_match("/h[a-z][b-f]t/", "hogt") . "<br>"; //0
 echo preg_match("/h.t/", "hot") . "<br>";           //1
 echo '<hr>';
+//|
+echo preg_match("/[a|b|c|d]/" , "abcd") . "<br>";//1
+echo preg_match("/(sat|sun|mon|tus|wen|thr|fri).(\d){1,2}/" , "sat,2") . "<br>";//1
+echo preg_match("/^(sat|sun|mon|tus|wen|thr|fri).(\d){1,2}$/" , "sat,1a") . "<br>";//0
