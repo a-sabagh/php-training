@@ -12,12 +12,10 @@
     echo "the out put of <b>str_word_count</b>: " . str_word_count($string_name) . "<br>";
     echo "the out put of <b>strrev</b>: " . strrev($string_name) . "<br>";
     echo "the output of <b>strpos </b> is: " . strpos($string_name, "poem") . "<br>";
-    echo "the output of <b>str_replace</b> is: " . str_replace("code" , "loev" , $string_name) . "<br>";
+    echo "the output of <b>str_replace</b> is: " . str_replace("code" , "love" , $string_name) . "<br>";
     echo "the output of <b>addcslashes</b> is: " . addcslashes($string_name, "p") . "<br>";
     echo "the output of <b>addcslashes</b> with other param is: " . addcslashes($string_name, "a..z") . "<br>";
     echo "the output of <b>addslashes</b> is: " . addslashes('code is "poem') . "<br>";
-    echo "the <b>explode</b> function breaks a word of string into an array: ";print_r(explode($string_name));echo '<br />';
-    echo "the <b>implode</b> function is give array as word and make output is statement: " . implode(" ",array(" ",'code','is','poem')) . "<br>";
     echo "the <b>join</b> function return string from the elements of array like implode function: " . join(" ", array('code' , 'is' , 'poem')) . "<br>";
     echo "the <b>ucfirst</b> function is make first letter of word or string uppercase: " . ucfirst($string_name) . "<br>";
     echo "the <b>lcfirst</b> function is make first letter of word or string lowercase: " . lcfirst($string_name) . "<br>";
