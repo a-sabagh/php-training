@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="mailpanel">
+	<table name="contacts">
+		<row>
+			<column name="id">1</column>
+			<column name="firstname">Abolfazl</column>
+			<column name="lastname">Sabagh</column>
+			<column name="email">a.sabagh72@gmail.com</column>
+		</row>
+		<row>
+			<column name="id">2</column>
+			<column name="firstname">reza</column>
+			<column name="lastname">sabagh</column>
+			<column name="email">reza.sabagh@gmail.com</column>
+		</row>
+	</table>
+</database>
