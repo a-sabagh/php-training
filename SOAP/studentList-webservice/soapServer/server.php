@@ -7,7 +7,7 @@ class student{
 	public static function connection($host,$username,$password,$db){
 		$connection = mysqli_connect($host,$username,$password,$db);
 		if(mysqli_connect_errno()){
-			printf("connection fail%s\n" , mysqli_errno());
+			printf("connection fail%s\n" , mysqli_connect_errno());
 			exit();
 		}
 		mysqli_select_db($connection,$db);
