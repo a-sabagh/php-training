@@ -45,8 +45,10 @@
         ?>
     </head>
     <body>
+        <?php $max = 1024 * 100; ?>
         <?php echo (isset($error))? $error : ''; ?>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max; ?>">
             <input type="file" name="image" >
             <input type="submit" name="send_photo" value="send" >
         </form>
