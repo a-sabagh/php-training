@@ -46,7 +46,7 @@
     </head>
     <body>
         <?php echo (isset($error))? $error : ''; ?>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
             <input type="file" name="image" >
             <input type="submit" name="send_photo" value="send" >
         </form>
