@@ -40,7 +40,8 @@
                     $error = '<span class="error">UPLOAD_ERR_EXTENSION</span>';
                     break;
             endswitch;
-            move_uploaded_file($upload_tmp,"uploads/{$upload_name}");
+            $destination = __DIR__ . "/uploads/{$upload_name}";
+            move_uploaded_file($upload_tmp,$destination);
         }
         ?>
     </head>
