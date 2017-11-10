@@ -13,8 +13,6 @@ if (isset($_GET['x'])) {
     try {
         echo inverse($_GET['x']);
     } catch (Exception $ex) {
-        echo "<pre>";
-        var_dump($ex);
-        echo "</pre>";
+        echo $e->getMessage();
     }
 }
