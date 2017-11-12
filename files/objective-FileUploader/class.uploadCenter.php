@@ -14,16 +14,50 @@ class uploadCenter {
 
 	function __construct($destination) {
 		if (is_dir($destination) and is_writable($destination)) {
-			$this->destination = $destination;
+			$perma_path = "";
+			$year = date("Y");
+			$month = date("m");
+			if($destination[strlen($destination) - 1] !== "/"){
+				$perma_path = "{$destination}/{$year}/{$month}/";
+			}else{
+				$perma_path = "{$destination}{$year}/{$month}/";
+			}
+			if(!is_dir($destination)){
+				mkdir($destination , 0755 , TRUE);
+			}
+			$this->destination = $perma_path;
 		} else {
 			throw new Exception("{$destination} must be real directory and be writable");
 		}
 	}
 
 	public function upload($file) {
-		if (!$this->checkName($file['name'])) {
-			$this->uploadOk = FALSE;
+		if(is_array($file)){
+			$current_file = array();
+			$count = count(current($file));
+			for ($i=0; $i < $count; $i++) {
+				$current['name'] = $file['name'][$i];
+				$current['type'] = $file['type'][$i];
+				$current['tmp_name'] = $file['tmp_name'][$i];
+				$current['error'] = $file['error'][$i];
+				$current['size'] = $file['size'][$i];
+				$this->checkName($current['name']);
+				$this->uploadOk = TRUE;
+				$this->checkFile($current);
+				if ($this->uploadOk) {
+					$this->moveFileUpload($current);
+				}
+			}
+		}else{
+			$this->checkName($file['name']);
+			$this->checkFile($file);
+			if ($this->uploadOk) {
+				$this->moveFileUpload($file);
+			}
 		}
+	}
+
+	protected function checkFile($file){
 		if (!$this->checkSize($file['size'])) {
 			$this->uploadOk = FALSE;
 		}
@@ -32,9 +66,6 @@ class uploadCenter {
 		}
 		if (!$this->checkError($file['error'])) {
 			$this->uploadOk = FALSE;
-		}
-		if ($this->uploadOk) {
-			$this->moveFileUpload($file);
 		}
 	}
 
@@ -135,28 +166,27 @@ class uploadCenter {
 		if (strpos($name, " ")) {
 			$this->fileName = str_replace(" ", "_", $name);
 			$this->messages[] = "{$name} is rename to " . $this->fileName;
-			return TRUE;
 		} else {
 			$this->fileName = $name;
-			return TRUE;
 		}
+		$existing_files = scandir($this->destination);
+		$pathinfo = pathinfo($this->fileName);
+		$extension = $pathinfo['extension'];
+		$filename = $pathinfo['filename'];
+		$i = 1;
+		while (in_array($this->fileName, $existing_files)) {
+			$this->fileName = $filename . "_{$i}." . $extension;
+			$i++;
+		}
+		return TRUE;
 	}
 
 	protected function moveFileUpload($file) {
-		$year = date("Y");
-		$month = date("m");
+
 		$temp_path = $file['tmp_name'];
 		$destination = $this->destination;
-		if($destination[strlen($destination) - 1] !== "/"){
-			$perma_path = "{$destination}/{$year}/{$month}/";
-		}else{
-			$perma_path = "{$destination}{$year}/{$month}/";
-		}
-		if(!is_dir($perma_path)){
-			mkdir($perma_path , 0755 , TRUE);
-		}
-		$perma_path = $perma_path . $this->fileName;
-		$result = move_uploaded_file($temp_path, $perma_path);
+		$destination = $destination . $this->fileName;
+		$result = move_uploaded_file($temp_path, $destination);
 		if($result){
 			$this->messages[] = $this->fileName . " was uploaded successfully";
 		}else{
@@ -167,5 +197,4 @@ class uploadCenter {
 	public function getMessage() {
 		return $this->messages;
 	}
-
 }

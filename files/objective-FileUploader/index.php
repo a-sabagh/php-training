@@ -7,7 +7,7 @@
 <body>
 	<?php
 	if(isset($_POST['submit'])){
-		$max_size = 800 * 1024;
+		$max_size = 200 * 1024;
 		try {
 			require_once "class.uploadCenter.php";
 			$destination = "uploads";
@@ -34,7 +34,7 @@
 
 	<h1>upload center:</h1>
 	<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
-		<input type="file" name="file_name">
+		<input type="file" name="file_name[]" multiple>
 		<input type="submit" name="submit" value="upload">
 	</form>
 </body>
