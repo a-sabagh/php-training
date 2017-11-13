@@ -192,35 +192,27 @@ class uploadCenter {
         switch ($error) {
             case 0:
                 return TRUE;
-                break;
             case 1;
                 $this->messages[] = 'UPLOAD_ERR_INI_SIZE';
                 return FALSE;
-                break;
             case 2;
                 $this->messages[] = 'UPLOAD_ERR_FORM_SIZE';
                 return FALSE;
-                break;
             case 3;
                 $this->messages[] = 'UPLOAD_ERR_PARTIAL';
                 return FALSE;
-                break;
             case 4;
                 $this->messages[] = 'UPLOAD_ERR_NO_FILE';
                 return FALSE;
-                break;
             case 6;
                 $this->messages[] = 'UPLOAD_ERR_NO_TMP_DIR';
                 return FALSE;
-                break;
             case 7;
                 $this->messages[] = 'UPLOAD_ERR_CANT_WRITE';
                 return FALSE;
-                break;
             case 8;
                 $this->messages[] = 'UPLOAD_ERR_EXTENSION';
                 return FALSE;
-                break;
         }
     }
 
