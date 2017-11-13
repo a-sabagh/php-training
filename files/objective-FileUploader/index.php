@@ -13,7 +13,7 @@
                 $destination = "uploads";
                 $attachment = new uploadCenter($destination);
                 $attachment->setMaxSize($max_size);
-                $attachment->setType(array("image/jpeg", "image/png", "image/webp", "image/x-icon", "application/zip", "application/pdf", "application/x-rar-compressed"));
+                $attachment->setType(array("text/x-python","image/jpeg", "image/png", "image/webp", "image/x-icon", "application/zip", "application/pdf", "application/x-rar-compressed"));
             } catch (Exception $e) {
                 $exception_error = $e->getMessage();
             }

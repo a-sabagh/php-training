@@ -7,6 +7,7 @@
  * Author link: http://gnutec.ir
  * Link: https://github.com/a-sabagh/PHP/tree/master/files/objective-FileUploader
  */
+
 class uploadCenter {
 
     protected $destination;
@@ -15,6 +16,8 @@ class uploadCenter {
     protected $fileName = NULL;
     protected $fileSize = 1024 * 1024;
     protected $fileType = array("image/jpeg", "image/png", "image/webp", "image/x-icon", "application/zip", "application/pdf", "application/x-rar-compressed");
+    protected $blacklistExt = array("js","py","exe","php","dmg" , "php3" , "php4" , "phtml" , "pl" , "jsp" , "asp" , "htm" , "shtml" , "sh" , "cgi");
+    protected $suffix = ".txt";
 
     function __construct($destination) {
         if (is_dir($destination) and is_writable($destination)) {
@@ -34,6 +37,7 @@ class uploadCenter {
             throw new Exception("{$destination} must be real directory and be writable");
         }
     }
+
     /**
      * uploading method
      * @param type $file
@@ -63,6 +67,20 @@ class uploadCenter {
             }
         }
     }
+
+    /**
+     * neutralize blacklist extension file
+     * @param type $filename
+     */
+    protected function neutralizeBlacklistExt($filename) {
+        $pathinfo = pathinfo($filename);
+        $extension = $pathinfo['extension'];
+        
+        if (in_array($extension, $this->blacklistExt)) {
+            $this->fileName = $this->fileName . $this->suffix;
+        }
+    }
+
     /**
      * checking size and type and error of the uploading file
      * @param type $file
@@ -78,6 +96,7 @@ class uploadCenter {
             $this->uploadOk = FALSE;
         }
     }
+
     /**
      * convert string value to byte for example 1Mb = 1024 byte
      * @param type $string
@@ -101,6 +120,7 @@ class uploadCenter {
             return FALSE;
         }
     }
+
     /**
      * seting max size for uploading file
      * @param type $size
@@ -117,6 +137,7 @@ class uploadCenter {
             $this->fileSize = $size;
         }
     }
+
     /**
      * checking size of uploading file 
      * @param type $size
@@ -130,6 +151,7 @@ class uploadCenter {
             return TRUE;
         }
     }
+
     /**
      * set type for uploading file
      * @param type $array_type
@@ -142,6 +164,7 @@ class uploadCenter {
             throw new Exception("uploadCenter::setType parameter must be array");
         }
     }
+
     /**
      * checking type of uploading file 
      * @param type $type
@@ -151,10 +174,11 @@ class uploadCenter {
         if (in_array($type, $this->fileType)) {
             return TRUE;
         } else {
-            $this->messages[] = "format of " . $this->fileName . " file is illegal";
+            $this->messages[] = "type of {$type} file is illegal";
             return FALSE;
         }
     }
+
     /**
      * checking error of uploading file
      * @param type $error
@@ -195,6 +219,7 @@ class uploadCenter {
                 break;
         }
     }
+
     /**
      * checking name of uploading file for rename file that exist in folder and replace space with  underscore
      * @param type $name
@@ -203,10 +228,10 @@ class uploadCenter {
     protected function checkName($name) {
         if (strpos($name, " ")) {
             $this->fileName = str_replace(" ", "_", $name);
-            $this->messages[] = "{$name} is rename to " . $this->fileName;
         } else {
             $this->fileName = $name;
         }
+        $this->neutralizeBlacklistExt($name);
         $existing_files = scandir($this->destination);
         $pathinfo = pathinfo($this->fileName);
         $extension = $pathinfo['extension'];
@@ -218,6 +243,7 @@ class uploadCenter {
         }
         return TRUE;
     }
+
     /**
      * moving uploaded file from temp directory to permanenet path
      * @param type $file
@@ -229,11 +255,15 @@ class uploadCenter {
         $destination = $destination . $this->fileName;
         $result = move_uploaded_file($temp_path, $destination);
         if ($result) {
+            if($file['name'] !== $this->fileName){
+                $this->messages[] = "{$file['name']} is rename to " . $this->fileName;
+            }
             $this->messages[] = $this->fileName . " was uploaded successfully";
         } else {
             $this->messages[] = "uploading " . $this->fileName . " fail";
         }
     }
+
     /**
      * show array messages
      * @return type
