@@ -7,7 +7,6 @@
  * Author link: http://gnutec.ir
  * Link: https://github.com/a-sabagh/PHP/tree/master/files/objective-FileUploader
  */
-
 class uploadCenter {
 
     protected $destination;
@@ -16,9 +15,14 @@ class uploadCenter {
     protected $fileName = NULL;
     protected $fileSize = 1024 * 1024;
     protected $fileType = array("image/jpeg", "image/png", "image/webp", "image/x-icon", "application/zip", "application/pdf", "application/x-rar-compressed");
-    protected $blacklistExt = array("js","py","exe","php","dmg" , "php3" , "php4" , "phtml" , "pl" , "jsp" , "asp" , "htm" , "shtml" , "sh" , "cgi");
+    protected $blacklistExt = array("js", "py", "exe", "php", "dmg", "php3", "php4", "phtml", "pl", "jsp", "asp", "htm", "shtml", "sh", "cgi");
     protected $suffix = ".txt";
 
+    /**
+     * create destination with this template '$folder/year/month/'
+     * @param type $destination
+     * @throws Exception
+     */
     function __construct($destination) {
         if (is_dir($destination) and is_writable($destination)) {
             $perma_path = "";
@@ -39,7 +43,7 @@ class uploadCenter {
     }
 
     /**
-     * uploading method
+     * uploading proccess for multiple and singular uploading file
      * @param type $file
      */
     public function upload($file) {
@@ -75,7 +79,7 @@ class uploadCenter {
     protected function neutralizeBlacklistExt($filename) {
         $pathinfo = pathinfo($filename);
         $extension = $pathinfo['extension'];
-        
+
         if (in_array($extension, $this->blacklistExt)) {
             $this->fileName = $this->fileName . $this->suffix;
         }
@@ -122,7 +126,7 @@ class uploadCenter {
     }
 
     /**
-     * seting max size for uploading file
+     * seting max size for uploading file and check it with ini server max size
      * @param type $size
      * @throws Exception
      */
@@ -222,6 +226,7 @@ class uploadCenter {
 
     /**
      * checking name of uploading file for rename file that exist in folder and replace space with  underscore
+     * and neutrilize blacklist extencion
      * @param type $name
      * @return boolean
      */
@@ -246,6 +251,7 @@ class uploadCenter {
 
     /**
      * moving uploaded file from temp directory to permanenet path
+     * finally showing message if file rename 
      * @param type $file
      */
     protected function moveFileUpload($file) {
@@ -255,7 +261,7 @@ class uploadCenter {
         $destination = $destination . $this->fileName;
         $result = move_uploaded_file($temp_path, $destination);
         if ($result) {
-            if($file['name'] !== $this->fileName){
+            if ($file['name'] !== $this->fileName) {
                 $this->messages[] = "{$file['name']} is rename to " . $this->fileName;
             }
             $this->messages[] = $this->fileName . " was uploaded successfully";
