@@ -1,7 +1,11 @@
 <?php
 
 /**
- * 
+ * upload center for uploading multiple and singular file
+ * set type and size of file and get all messages about uploading proccess
+ * Author: gnutec.ir
+ * Author link: http://gnutec.ir
+ * Link: https://github.com/a-sabagh/PHP/tree/master/files/objective-FileUploader
  */
 class uploadCenter {
 
@@ -30,7 +34,10 @@ class uploadCenter {
             throw new Exception("{$destination} must be real directory and be writable");
         }
     }
-
+    /**
+     * uploading method
+     * @param type $file
+     */
     public function upload($file) {
         if (is_array($file)) {
             $current_file = array();
@@ -56,7 +63,10 @@ class uploadCenter {
             }
         }
     }
-
+    /**
+     * checking size and type and error of the uploading file
+     * @param type $file
+     */
     protected function checkFile($file) {
         if (!$this->checkSize($file['size'])) {
             $this->uploadOk = FALSE;
@@ -68,7 +78,11 @@ class uploadCenter {
             $this->uploadOk = FALSE;
         }
     }
-
+    /**
+     * convert string value to byte for example 1Mb = 1024 byte
+     * @param type $string
+     * @return boolean|int
+     */
     protected static function convertToByte($string) {
         $output = (int) $string;
         $unit = strtolower($string[strlen($string) - 1]);
@@ -87,7 +101,11 @@ class uploadCenter {
             return FALSE;
         }
     }
-
+    /**
+     * seting max size for uploading file
+     * @param type $size
+     * @throws Exception
+     */
     public function setMaxSize($size) {
         $serverMaxSize = self::convertToByte(ini_get("upload_max_filesize"));
         $size = (int) $size;
@@ -99,7 +117,11 @@ class uploadCenter {
             $this->fileSize = $size;
         }
     }
-
+    /**
+     * checking size of uploading file 
+     * @param type $size
+     * @return boolean
+     */
     protected function checkSize($size) {
         if ($size > $this->fileSize) {
             $this->messages[] = $this->fileName . " is to big";
@@ -108,7 +130,11 @@ class uploadCenter {
             return TRUE;
         }
     }
-
+    /**
+     * set type for uploading file
+     * @param type $array_type
+     * @throws Exception
+     */
     public function setType($array_type) {
         if (is_array($array_type)) {
             $this->fileType = $array_type;
@@ -116,7 +142,11 @@ class uploadCenter {
             throw new Exception("uploadCenter::setType parameter must be array");
         }
     }
-
+    /**
+     * checking type of uploading file 
+     * @param type $type
+     * @return boolean
+     */
     protected function checkType($type) {
         if (in_array($type, $this->fileType)) {
             return TRUE;
@@ -125,7 +155,11 @@ class uploadCenter {
             return FALSE;
         }
     }
-
+    /**
+     * checking error of uploading file
+     * @param type $error
+     * @return boolean
+     */
     protected function checkError($error) {
         switch ($error) {
             case 0:
@@ -161,7 +195,11 @@ class uploadCenter {
                 break;
         }
     }
-
+    /**
+     * checking name of uploading file for rename file that exist in folder and replace space with  underscore
+     * @param type $name
+     * @return boolean
+     */
     protected function checkName($name) {
         if (strpos($name, " ")) {
             $this->fileName = str_replace(" ", "_", $name);
@@ -180,7 +218,10 @@ class uploadCenter {
         }
         return TRUE;
     }
-
+    /**
+     * moving uploaded file from temp directory to permanenet path
+     * @param type $file
+     */
     protected function moveFileUpload($file) {
 
         $temp_path = $file['tmp_name'];
@@ -193,7 +234,10 @@ class uploadCenter {
             $this->messages[] = "uploading " . $this->fileName . " fail";
         }
     }
-
+    /**
+     * show array messages
+     * @return type
+     */
     public function getMessage() {
         return $this->messages;
     }
