@@ -40,13 +40,16 @@
                     $error = '<span class="error">UPLOAD_ERR_EXTENSION</span>';
                     break;
             endswitch;
-            move_uploaded_file($upload_tmp,"uploads/{$upload_name}");
+            $destination = __DIR__ . "/uploads/{$upload_name}";
+            move_uploaded_file($upload_tmp,$destination);
         }
         ?>
     </head>
     <body>
+        <?php $max = 1024 * 100; ?>
         <?php echo (isset($error))? $error : ''; ?>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo $max; ?>">
             <input type="file" name="image" >
             <input type="submit" name="send_photo" value="send" >
         </form>
