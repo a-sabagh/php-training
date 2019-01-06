@@ -1,0 +1,14 @@
+{
+    "name": "asabagh/faker",
+    "description": "using persian feker library to create persian fake expression",
+    "type": "private",
+    "require": {
+        "josh/faker": "^0.0.8"
+    },
+    "authors": [
+        {
+            "name": "asabagh",
+            "email": "a.sabagh72@gmail.com"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+[
+    {
+        "name": "josh/faker",
+        "version": "0.0.8",
+        "version_normalized": "0.0.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/iamalirezaj/faker.git",
+            "reference": "57b79379dbaef8265fd0a0054ca3977d2b25ab50"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/iamalirezaj/faker/zipball/57b79379dbaef8265fd0a0054ca3977d2b25ab50",
+            "reference": "57b79379dbaef8265fd0a0054ca3977d2b25ab50",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^5.6"
+        },
+        "time": "2018-10-17T08:40:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Josh\\Faker\\": "src/"
+            },
+            "files": [
+                "src/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Alireza Josheghani",
+                "email": "josheghani.dev@gmail.com"
+            }
+        ],
+        "description": "A library for generate fake items"
+    }
+]
