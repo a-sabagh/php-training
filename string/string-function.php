@@ -1,9 +1,7 @@
-<html>
-    <head>
+
         <title>String_function</title>
         <style>b{color: orangered;font-size: 17px;font-family: consolas,"courier new",monospace; color: orangered;}</style>
-    </head>
-    <body>
+
     <?php
     $string_name = "code is poem";
     echo "The real string is : " . $string_name . "<hr>";
@@ -42,12 +40,27 @@
     echo "the <b>htmlentities</b> function is echo all special chars is availabel in key , see: " . htmlentities("!@#$%^&*()+|~<© W3Sçh°°¦§>") ."<hr>";
     echo "the <b>htmlspecialchars</b> function is ech html tag and recognize never tag and html tag as string see: ". htmlspecialchars("<i>never bold</i>") . "<br>";
     echo "the default way and without using htmlspecialchars function is : <i>bold</i> <hr>";
-    echo "the <b>parse_str</b> function is parse a query string into the variable: " . parse_str("name= abolfazl &nicname= papillon &job= programmer ") . "<br>";
+    echo "the <b>parse_str</b> function is parse a query string into the variable: " . parse_str("name= abolfazl &nicname= papillon job= programmer ") . "<br>";
     echo 'the variable $name is:' . $name . 'and variable $nickname is: ' . $nicname . 'and the variable $lastname is: ' . $lastname . "<hr>" ;
     echo "the <b>printf</b> is echo formatted string: ";
     $name = "atiyeh";
     $age=21;
     printf("%s is my love and he is %u years old" , $name , $age);
+echo '<br>';
+echo ord('a') . '<br>';
+echo ord('l') . '<br>';
+echo ord('i') . '<br>';
+echo ord('ali') . '<br>';
+echo chunk_split($string_name,2,"#");
+echo strpos("php is grat","php"); //0
+
+
+$a1=array("a"=>"red","b"=>"green","c"=>"blue","d"=>"yellow");
+array_splice($a1,0,2);
+print_r($a1);
+
+
+
+
+
    ?>
-    </body>
-</html>
