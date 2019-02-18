@@ -33,8 +33,8 @@ class uploadCenter {
             } else {
                 $perma_path = "{$destination}{$year}/{$month}/";
             }
-            if (!is_dir($destination)) {
-                mkdir($destination, 0755, TRUE);
+            if (!is_dir($perma_path)) {
+                mkdir($perma_path, 0755, TRUE);
             }
             $this->destination = $perma_path;
         } else {
@@ -47,7 +47,7 @@ class uploadCenter {
      * @param type $file
      */
     public function upload($file) {
-        if (is_array($file)) {
+        if (is_array($file['name'])) {
             $current_file = array();
             $count = count(current($file));
             for ($i = 0; $i < $count; $i++) {
