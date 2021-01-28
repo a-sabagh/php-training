@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="onliner.ir.talebian.woocommerce"
+    android:installLocation="auto"
+    android:targetSandboxVersion="1">
+
+    <uses-sdk tools:overrideLibrary="android.support.customtabs,com.crashlytics.android,com.crashlytics.android.CrashlyticsInitProvider,io.fabric.sdk.android.Fabric,com.crashlytics.android.Crashlytics,com.yalantis.pulltomakesoup, eu.long1.spacetablayout ,android.support.v7.appcompat,   de.hdodenhof.circleimageview,  com.ir.talebian,com.android.databinding.library.baseAdapters,com.android.databinding.library,     com.ericliu.asyncexpandablelist,      android.support.graphics.drawable,     android.support.v4,     android.support.fragment,     android.support.mediacompat,     android.support.coreui,     android.support.coreutils,     android.support.compat,     android.support.annotation,     com.google.android.location,     com.google.android.gms.location,     com.google.android.gms.maps,     com.google.android.gms.base,     com.google.android.gms.tasks,     com.google.android.gms,     com.google.android.gms.gcm,     com.google.android.gms.iid,     com.hlab.fabrevealmenu,  com.google.firebase:firebase-messaging, am.gaut.android.toolbarbutton,     co.ronash.pushe       " />
+    <!-- Optional permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.CAMERA" /> <!--  Dangerous Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> <!-- Optional permissions -->
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"  tools:node="remove"/>
+
+    <application
+        android:name=".General"
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_luncher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_luncher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning"
+        >
+
+        <activity android:name=".pageSingle.VariationActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".pageCategoryOne.ActivityCatOneCustom"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".pageLoginAndSignup.ActivityRulels"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${mapid}" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_basket_notif" />
+
+        <meta-data
+            android:name="co.ronash.pushe.token"
+            android:value="${pusheid}" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="${fabid}" />
+
+        <activity
+            android:name=".pageMain.ActivityMain"
+            android:screenOrientation="portrait"
+            android:supportsRtl="false"
+            android:theme="@style/AppTheme.Main"
+            tools:ignore="RtlEnabled" />
+        <activity
+            android:name=".pageCategoryOne.CategoryOne"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:supportsRtl="false"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".pageAddToCard.SampleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+
+            android:name=".pageSingle.chat.ActivityChat"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+
+        <activity
+            android:name=".pageMain.ActivityAllChat"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"
+            tools:ignore="LockedOrientationActivity" />
+
+
+        <activity
+            android:name=".pageSingle.ActivityGallery"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppThemesplash" />
+        <activity
+            android:name=".FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppThemesplash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".pagePlayer.ActivityPlayer"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppThemesplash" />
+        <activity
+            android:name=".pageSingle.ImmersiveDetailActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme.Main" />
+        <activity
+            android:name=".pageSingle.VirayeshKharidd"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.Transparentt"
+            android:screenOrientation="unspecified"/>
+        <activity
+            android:name=".pageSingle.VirayeshKhariddCutting"
+            android:label="@string/app_name"
+
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.Transparentt"
+            android:screenOrientation="unspecified"/>
+        <activity
+            android:name=".pageSingle.pageProductAttrs.BeautifulRecyclerViewActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".pageLoginAndSignup.ActivitySignup"
+            android:screenOrientation="unspecified"
+            android:theme="@style/TranslucentLogin"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".pageAbout.AboutActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".pageAbout.ActivityRequestCustomer"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".pageLoginAndSignup.ActivityLogin"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppThemeLoginn"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".pageLoginAndSignup.ActivityResetPass"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppThemeLogin"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".pageComments.CommentsMain"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".widget.ActivityCredit"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".pageCategoryThree.CategoryThree"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme.Main" />
+        <activity
+            android:name=".pageDokan.CategoryDokan"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".pageSellerCategory.SallerActivitySortDialog"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".pageSellerCategory.SallerCategory"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".pageCategoryThree.filter.FilterActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".pageCategoryThree.ActivitySortDialog"
+            android:theme="@style/AppCompatAlertDialogStyle"/>
+        <activity
+            android:name=".pageProfile.ActivityProfilePager"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:windowSoftInputMode="stateHidden|adjustNothing" />
+        <activity
+            android:name=".pageCategoryTwo.CategoryTwo"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".pageCategoryTwo.BuyListMain"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".pageAddToCard.ActivityAddAddressListFields"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".pageAddToCard.ActivityInformation"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".pageAddToCard.ActivityAddToCard"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".pageAddToCard.ActivityPaymentResult"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="${hostName}"
+                    android:path="/credit/1"
+                    android:scheme="app" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".pageAddToCard.cropImage.ResultActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".pageAddToCard.cropImage.BaseActivity" />
+        <activity
+            android:name=".pageSearch.ActivitySearch"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".pageSearch.ActivityListSearchBuy"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/AppThemeLogin"
+            android:windowSoftInputMode="stateHidden"  />
+        <activity
+            android:name=".pageSearch.pageQrCodeReader.ActivityQrCode"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".pageQuestions.ActivityQuestions"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".pageLoginAndSignup.ActivityVerifyLogin"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".pageNotificationBlog.ActivityNotificationsBlog"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".pageNotificationBlog.ActivitySingleNotificationsBlog"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".pageBlog.ActivityCommentBlog"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".pageBlog.ActivityBlog"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".pageBlog.ActivitySingleBlog"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
+
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="${hostName}" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".widget.MyFirebaseMessagingService"
+            android:exported="true">
+            <intent-filter android:priority="999">
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".widget.MyFirebaseInstanceIDService"
+            android:exported="true">
+            <intent-filter android:priority="999">
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="co.ronash.pushe.fcm.FcmService"
+            tools:node="remove" />
+
+        <receiver
+            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.fc.debug" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${hostName}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+    </application>
+
+</manifest>
