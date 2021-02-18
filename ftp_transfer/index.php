@@ -14,13 +14,16 @@ function ftp_transfer($source_list,$destination_path){
     if(!$login_result){
         return [false];
     }
-    if(false == ftp_nlist($connection,$destination_path)){
+    $directory_list = ftp_nlist($connection,dirname($destination_path));
+    $directory_name = basename($destination_path);
+    if(false == array_search($directory_name,$directory_list)){
         ftp_mkdir($connection,$destination_path);
     }
     foreach($source_list as $source){
         $file_name = basename($source);
         $remote_file_path = $destination_path . "/{$file_name}";
-        if(false == ftp_nlist($connection,$remote_file_path)){
+        $directory_list = ftp_nlist($connection,$destination_path);
+        if(array_search($file_name,$directory_list)){
             ftp_delete($connection,$remote_file_path);
         }
         $results[] = ftp_put($connection,$remote_file_path,$source,FTP_BINARY);
