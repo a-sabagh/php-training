@@ -23,3 +23,16 @@ function insert($data){
 	$xml->save('user.xml');
 
 }
+
+function update($id,$data){
+	$xml = new DomDocument;
+	$xml->load("user.xml");
+	$dolphine = $xml->getElementsByTagName('dolphine')->item(0);
+	$user = $xml->getElementById($id);
+	foreach($data as $tagname => $text_content){
+		$user->getElementsByTagName($tagname)->item(0)->textContent = $text_content;
+	}
+	$xml->save('user.xml');
+}
+
+
