@@ -35,4 +35,21 @@ function update($id,$data){
 	$xml->save('user.xml');
 }
 
+function find($id){
+	$data = [];
+	$xml = new DomDocument;
+	$xml->load("user.xml");
+	$dolphine = $xml->getElementsByTagName('dolphine')->item(0);
+	$user = $xml->getElementById($id);
+	if(empty($user)){
+		return;
+	}
+	foreach($user->childNodes as $item){
+		if(false == $item instanceof \DOMElement){
+			continue;
+		}
+		$data[$item->nodeName] = $item->nodeValue;
+	}
+	return $data;
+}
 
