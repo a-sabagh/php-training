@@ -61,5 +61,3 @@ function delete($id){
 	$dolphine->removeChild($user);
 	$xml->save('user.xml');
 }
-
-delete('a-sabagh');
