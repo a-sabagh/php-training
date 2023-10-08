@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dolphine xml:id="db">                                                                                
+    <user xml:id="a-sabagh">
+		<id>1696681081</id>
+        <username>a-sabagh</username>
+        <password>bKm@~b%V50W^fZ</password>
+        <email>info@asabagh.ir</email>
+        <activation_key>QEqyKyDOIQN0Fhv25xsx</activation_key>
+        <status>active</status>                                                                      
+        <role>admin</role>                                                                           
+        <display_name>Abolfazl Sabagh</display_name>
+        <directory_root>asabagh.ir</directory_root>
+		<registred_at>1696672653</registred_at>
+    </user>                                                                                              
+</dolphine>
