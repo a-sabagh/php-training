@@ -53,3 +53,13 @@ function find($id){
 	return $data;
 }
 
+function delete($id){
+	$xml = new DomDocument;
+	$xml->load("user.xml");
+	$dolphine = $xml->getElementsByTagName('dolphine')->item(0);
+	$user = $xml->getElementById($id);
+	$dolphine->removeChild($user);
+	$xml->save('user.xml');
+}
+
+delete('a-sabagh');
